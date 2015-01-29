@@ -8,7 +8,6 @@
 
 #include <glib.h>
 
-#include <notify.h>
 #include <plugin.h>
 #include <version.h>
 #include <cmds.h>
