@@ -1,5 +1,7 @@
 # purple-b64r13
-A simple libpurple plugin for encoding sent messages through base64-rot13
+A simple libpurple plugin for encoding/decoding messages with Base64-Rot13.
+
+Suppose you want to send an obscured message. Encoding your message using Base64 is a good way to do so, but many people can recognize a Base64 string and will be able to decode it easily. Encoding the Base64 string through Rot13 means that the message still looks like Base64, but will come out as gibberish when attempting to decode such.
 
 ## Building and Installation
 
@@ -16,10 +18,10 @@ A simple libpurple plugin for encoding sent messages through base64-rot13
 
 ## Usage
 
-To encode:
+To send a message encoded with Base64-Rot13:
 > /b64r13 Message
 
-To decode:
+To decode a Base64-Rot13-encoded message:
 > /b64r13d GJImp2SaMDb=
 
 ## Changelog
