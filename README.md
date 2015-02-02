@@ -1,11 +1,17 @@
 # purple-b64r13
 A simple libpurple plugin for encoding sent messages through base64-rot13
 
-## Installation
+## Building and Installation
 
-Copy `b64r13.so` to `~/.purple/plugins`.
+1. Execute
 
-_TODO_
+        make
+        make install
+
+   (_Binary releases to come_)
+
+2. Activate the plugin from Pidgin's plugin dialog (Tools > Plugins) 
+
 <!-- TODO: build instructions, better installation instructions -->
 
 ## Usage
@@ -14,5 +20,8 @@ To encode:
 > /b64r13 Message
 
 To decode:
-> /b64r13 -d GJImp2SaMDb=
+> /b64r13d GJImp2SaMDb=
 
+## Changelog
+
+* v0.1.0: Initial release
