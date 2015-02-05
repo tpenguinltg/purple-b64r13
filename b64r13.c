@@ -46,8 +46,7 @@ static PurpleCmdId b64r13_cmd_id, b64r13d_cmd_id;
 static gchar*
 rot13(gchar *s)
   {
-  int i;
-  for(i=0; s[i]!='\0'; i++)
+  for(int i=0; s[i]!='\0'; i++)
     {
     // if lowercase
     if('a' <= s[i] && s[i] <= 'z')
@@ -100,15 +99,22 @@ static PurpleCmdRet
 b64r13_cb(PurpleConversation *conv, const gchar *cmd, const gchar **args, gchar **error, void *data)
   {
   guchar *encoded_str = rot13(g_base64_encode(args[0], strlen(args[0])));
+
   
   //output to conversation
   if (purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM)
     {
     purple_conv_im_send(PURPLE_CONV_IM(conv), encoded_str);
+    // output original message as system message
+    purple_conv_im_write(PURPLE_CONV_IM(conv), NULL,
+                         args[0], PURPLE_MESSAGE_SYSTEM, time(NULL));
     }
   else if (purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT)
     {
     purple_conv_chat_send(PURPLE_CONV_CHAT(conv), encoded_str);
+    // output original message as system message
+    purple_conv_chat_write(PURPLE_CONV_CHAT(conv), NULL,
+                           args[0],  PURPLE_MESSAGE_SYSTEM, time(NULL));
     }//end if
 
   g_free(encoded_str);
@@ -130,8 +136,6 @@ b64r13_decode_cb(PurpleConversation *conv, const gchar *cmd, gchar **args, gchar
   strncpy(decoded_str, decoded_raw, decoded_length);
 
   time_t _time=time(NULL);
-
-  //TODO fix non-null-terminated output
 
   if (purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM)
     {
@@ -191,11 +195,11 @@ static PurplePluginInfo info =
   
   "core-tpenguinltg-b64r13",
   "Base64-Rot13 Encode",
-  "0.1.0",
+  "0.2.0-beta",
   
   "Encodes message using Base64 and Rot13.",
   "Encodes message using Base64, then encodes the result using Rot13."
-    "Adds the /b64r13 command for encoding and /b64r13d command for decoding.",
+    " Adds the /b64r13 command for encoding and /b64r13d command for decoding.",
   "tPenguinLTG <tpenguinltg@hotmail.com>",
   "https://github.com/tpenguinltg/purple-b64r13",
   

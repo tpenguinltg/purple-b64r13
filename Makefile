@@ -8,7 +8,7 @@ RM = rm -f
 all: br64r13.so
 
 br64r13.so: b64r13.c
-	${CC} ${LIBPURPLE_CFLAGS} -Wall -pthread ${GLIB_CFLAGS} -I. -g -pipe b64r13.c -o b64r13.so -shared -fPIC -DPIC
+	${CC} -std=c99 ${LIBPURPLE_CFLAGS} -Wall -pthread ${GLIB_CFLAGS} -I. -g -pipe b64r13.c -o b64r13.so -shared -fPIC -DPIC
 
 clean:
 	${RM} b64r13.so
