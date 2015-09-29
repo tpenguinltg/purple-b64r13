@@ -104,12 +104,12 @@ b64r13_cb(PurpleConversation *conv, const gchar *cmd, const gchar **args, gchar 
 	/* output to conversation */
 	if (purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_IM) {
 		purple_conv_im_send(PURPLE_CONV_IM(conv), encoded_str);
-		/*  output original message as system message */
+		/* output original message as system message */
 		purple_conv_im_write(PURPLE_CONV_IM(conv), NULL,
 		                     args[0], PURPLE_MESSAGE_SYSTEM, time(NULL));
 	} else if (purple_conversation_get_type(conv) == PURPLE_CONV_TYPE_CHAT) {
 		purple_conv_chat_send(PURPLE_CONV_CHAT(conv), encoded_str);
-		/*  output original message as system message */
+		/* output original message as system message */
 		purple_conv_chat_write(PURPLE_CONV_CHAT(conv), NULL,
 		                       args[0],  PURPLE_MESSAGE_SYSTEM, time(NULL));
 	}/* end if */
